@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --logo-color: #26434c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+@media only screen and (max-width: 68.75em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.bodonimoda-font {
+  font-family: var(--font-bodoni-moda);
+}
+
+.inter-font {
+  font-family: var(--font-inter);
+}
+
+body {
+  font-family: var(--font-inter);
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  /* max-width: 150em; */
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.content > div {
+  flex: 1 0 auto;
+}
+
+.inside-stroke {
+  position: relative;
+  box-shadow: inset 0 0 0 1px white;
+}
+
+.backgroundImage {
+  background-image: url("/images/gemini_generated.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo-container {
+  position: relative;
+}
+
+.bg-logo-app {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.secondary-bg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/surf_hero.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;  
+  z-index: -1;
+}
+
+.booking-visit {
+  color: rgba(255, 255, 255, 0.1);  
+  text-align: center;
+  position: absolute;
+  bottom: -5%;
+}
+
+.bot-gradient {
+  position: absolute;
+  flex-grow: 1;
+  bottom: 0;
+  background: linear-gradient(to right, #26434C 0%, #1E343B 22%, #000000 100%);
+  /* height: 200px; */
+  width: 100%;
+}
