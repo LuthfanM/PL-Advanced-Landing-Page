@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project is related with this [Backend](https://github.com/LuthfanM/PL-Advanced-Backend-Page).
+You need to deploy both of them to make it works
 
 ## Getting Started
 
@@ -18,4 +19,4 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More
-
+If you see something in browser, now we ready to deploy our back end.
