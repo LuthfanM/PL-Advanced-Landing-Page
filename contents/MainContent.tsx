@@ -1,7 +1,9 @@
 "use client";
 import SupportingImage from "@/components/Image/SupportingImage";
 import FormikWrapper from "@/components/Validator/FormikWrapper";
+import { createSurfer } from "@/handlers/services/Surfer";
 import { FormList } from "@/helpers";
+import { dateFormatter } from "@/helpers/functions";
 import { useFormData } from "@/providers/FormDataProvider";
 import React, { useEffect, useState } from "react";
 
@@ -40,6 +42,21 @@ const MainContent = () => {
     updateFormData(values);
     if (step < FormList.length) {
       nextStep();
+    }
+
+    if (step === FormList.length - 1) {
+      console.log("jhalo[sa", formData);
+      const payload = {
+        name: formData?.name,
+        country: formData?.country,
+        email: formData?.email,
+        phone_number: formData?.whatsappNumber,
+        id_card: values?.identityFile,
+        visit_date: dateFormatter(formData?.surfingName),
+        experience: formData?.surfingExperience,
+        desired_board: formData?.desiredBoard,
+      };
+      createSurfer(payload);
     }
   };
 

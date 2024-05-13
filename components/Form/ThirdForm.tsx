@@ -16,12 +16,18 @@ const ThirdForm: React.FC = () => {
 
   const handleFileSelectOrUpdate = useCallback(
     (file: File) => {
-      console.log(file);
-      setFieldValue("identityFile", file);
-      setFileDetail({
-        name: file.name,
-        size: `${(file.size / 1024).toFixed(2)} KB`,
-      });
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setFieldValue("identityFile", base64String);
+        setFileDetail({
+          name: file.name,
+          size: `${(file.size / 1024).toFixed(2)} KB`,
+        });
+      };
+
+      reader.readAsDataURL(file);
     },
     [setFieldValue]
   );
@@ -102,11 +108,12 @@ const ThirdForm: React.FC = () => {
               type="file"
               className="hidden"
               onChange={handleFileSelect}
-              // accept="image/*"
+              accept="image/*"
               multiple={false}
             />
             <div className="flex items-end self-center">
               <button
+                type="button"
                 className="mt-6 text-white font-bold underline"
                 onClick={() =>
                   document.querySelector("input[type='file']")?.click()

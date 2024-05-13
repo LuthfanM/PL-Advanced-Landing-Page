@@ -38,21 +38,22 @@ export const FormList = [
     },
     validationSchema: Yup.object().shape({
       surfingName: Yup.string()
-      .required("Required")
-      .matches(dateFormat, 'Must be in Format DD/MM/YYYY')
-      .test(
-        'is-valid-date',
-        'Invalid date',
-        (value) => {
+        .required("Required")
+        .matches(dateFormat, "Must be in Format DD/MM/YYYY")
+        .test("is-valid-date", "Invalid date", (value) => {
           if (!value) return false;
-          const parts = value.split('/');
+          const parts = value.split("/");
           const day = parseInt(parts[0], 10);
           const month = parseInt(parts[1], 10) - 1;
           const year = parseInt(parts[2], 10);
           const date = new Date(year, month, day);
-          return date && date.getFullYear() === year && date.getMonth() === month && date.getDate() === day;
-        }
-      ),
+          return (
+            date &&
+            date.getFullYear() === year &&
+            date.getMonth() === month &&
+            date.getDate() === day
+          );
+        }),
       desiredBoard: Yup.string().required("Required"),
       surfingExperience: Yup.number().min(0).max(10),
     }),
@@ -64,13 +65,22 @@ export const FormList = [
       identityFile: null,
     },
     validationSchema: Yup.object({
-      identityFile: Yup.mixed()
+      identityFile: Yup.string()
         .required("Required")
-        .test(
-          "fileSize",
-          "File too large",
-          (value) => value instanceof File && value.size <= 2097152 // 2MB
-        ),
+        .test("fileSize", "File too large", (value) => {
+          if (value) {
+            const base64Length = value.length - (value.indexOf(",") + 1);
+            const padding =
+              value.charAt(value.length - 2) === "="
+                ? 2
+                : value.charAt(value.length - 1) === "="
+                ? 1
+                : 0;
+            const fileSize = base64Length * 0.75 - padding;
+            return fileSize <= 2097152; // 2MB
+          }
+          return false;
+        }),
     }),
   },
   {
