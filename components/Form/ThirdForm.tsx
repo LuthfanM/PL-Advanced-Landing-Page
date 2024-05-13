@@ -116,7 +116,9 @@ const ThirdForm: React.FC = () => {
                 type="button"
                 className="mt-6 text-white font-bold underline"
                 onClick={() =>
-                  document.querySelector("input[type='file']")?.click()
+                  document
+                    .querySelector<HTMLInputElement>("input[type='file']")
+                    ?.click()
                 }
               >
                 Upload
