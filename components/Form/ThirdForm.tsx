@@ -1,6 +1,9 @@
+import { ThirdFormValues } from "@/types/forms";
+import { ErrorMessage, useFormikContext } from "formik";
 import React, { useState, useCallback } from "react";
 
 const ThirdForm: React.FC = () => {
+  const { setFieldValue, errors, touched } = useFormikContext<ThirdFormValues>(); 
   const [dragging, setDragging] = useState<boolean>(false);
 
   const handleDragIn = useCallback((e: React.DragEvent<HTMLDivElement>) => {
@@ -22,31 +25,37 @@ const ThirdForm: React.FC = () => {
     }
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      console.log(e.dataTransfer.files);
-      e.dataTransfer.clearData();
-    }
-  }, []);
+  const handleDrop = useCallback(
+    (e: React.DragEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setDragging(false);
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        const file = e.dataTransfer.files[0] as File; // Type assertion here
+        console.log(file);
+        setFieldValue("identityFile", file);
+        e.dataTransfer.clearData();
+      }
+    },
+    [setFieldValue]
+  );
 
   const handleFileSelect = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) {
-        console.log(e.target.files);
+      if (e.target.files && e.target.files.length > 0) {
+        const file = e.target.files[0] as File; // Type assertion here
+        console.log(file);
+        setFieldValue("identityFile", file);
       }
     },
-    []
+    [setFieldValue]
   );
 
   return (
-    <div className="space-y-4 w-full h-full  text-white">
+    <div className="space-y-4 w-full h-full text-white">
       <div className="mb-6 w-full">
         <label htmlFor="identity-experience" className="block mb-2 align-top">
-          Help us verify your identity by uploading a photo of your ID/KTP or
-          Passport
+          Help us verify your identity by uploading a photo of your ID/KTP or Passport
         </label>
       </div>
       <div className="bg-transparent">
@@ -69,7 +78,7 @@ const ThirdForm: React.FC = () => {
             type="file"
             className="hidden"
             onChange={handleFileSelect}
-            accept="image/*"
+            // accept="image/*"
             multiple={false}
           />
           <div className="flex items-end self-center">
@@ -82,6 +91,10 @@ const ThirdForm: React.FC = () => {
               Upload
             </button>
           </div>
+          <ErrorMessage name="identityFile" component="div" className="error text-red-600" />
+          {/* {touched.identityFile && errors.identityFile ? (
+            <div className="error">{errors.identityFile}</div>
+          ) : null} */}
         </div>
       </div>
     </div>

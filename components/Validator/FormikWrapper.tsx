@@ -17,12 +17,17 @@ function FormikWrapper<Values extends FormikValues>({
   validationSchema,
   onSubmit,
   children,
+  validateOnBlur,
+  validateOnChange,
 }: FormikWrapperProps<Values>) {
   return (
     <Formik<Values>
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      validateOnBlur={validateOnBlur}
+      validateOnChange={validateOnChange}
+      enableReinitialize={true}
     >
       {(formik) => <Form>{children}</Form>}
     </Formik>

@@ -16,7 +16,7 @@ const FirstForm = () => {
           placeholder="Name"
           className="w-full p-4 black60 placeholder:text-gray-300"
         />
-        <ErrorMessage name="name" component="div" className="error" />
+        <ErrorMessage name="name" component="div" className="error text-red-600" />
       </div>
       <div>
         <CustomDropdown
@@ -26,7 +26,7 @@ const FirstForm = () => {
           value={values.country}
           onChange={(value) => setFieldValue("country", value)}
         />
-        <ErrorMessage name="country" component="div" className="error" />
+        <ErrorMessage name="country" component="div" className="error text-red-600" />
       </div>
       <div>
         <Field
@@ -35,7 +35,7 @@ const FirstForm = () => {
           placeholder="Email"
           className="w-full p-4 black60 placeholder:text-gray-300"
         />
-        <ErrorMessage name="email" component="div" className="error" />
+        <ErrorMessage name="email" component="div" className="error text-red-600" />
       </div>
       <div>
         <Field
@@ -44,7 +44,7 @@ const FirstForm = () => {
           placeholder="Whatsapp number"
           className="w-full p-4 black60 placeholder:text-gray-300"
         />
-        <ErrorMessage name="whatsappNumber" component="div" className="error" />
+        <ErrorMessage name="whatsappNumber" component="div" className="error text-red-600" />
       </div>
     </div>
   );

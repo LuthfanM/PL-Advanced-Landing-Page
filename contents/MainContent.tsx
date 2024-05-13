@@ -2,10 +2,12 @@
 import SupportingImage from "@/components/Image/SupportingImage";
 import FormikWrapper from "@/components/Validator/FormikWrapper";
 import { FormList } from "@/helpers";
-import React, { useState } from "react";
+import { useFormData } from "@/providers/FormDataProvider";
+import React, { useEffect, useState } from "react";
 
 const MainContent = () => {
   const [step, setStep] = useState<number>(1);
+  const { formData, updateFormData } = useFormData();
 
   const nextStep = () =>
     setStep((prevStep) => Math.min(prevStep + 1, FormList.length));
@@ -17,16 +19,31 @@ const MainContent = () => {
       : `${step}/${FormList.length}: ${FormList[step - 1].name}`;
   };
 
-  const CurrentFormComponent = FormList[step - 1].component;
-  const formInitialValues = FormList[step - 1].initialValues;
-  const formValidationSchema = FormList[step - 1].validationSchema;
+  const [CurrentFormComponent, setCurrentForm] = useState(
+    () => FormList[step - 1].component
+  );
+  const [formInitialValues, setInitialValues] = useState(
+    () => FormList[step - 1].initialValues
+  );
+  const [formValidationSchema, setValidationSchema] = useState(
+    () => FormList[step - 1].validationSchema
+  );
+
+  useEffect(() => {
+    setCurrentForm(FormList[step - 1].component);
+    setInitialValues(FormList[step - 1].initialValues);
+    setValidationSchema(FormList[step - 1].validationSchema);
+  }, [step]);
 
   const handleFormSubmit = (values: any) => {
     console.log("Form Submitted:", values);
+    updateFormData(values);
     if (step < FormList.length) {
       nextStep();
     }
   };
+
+  console.log("---", formData);
 
   return (
     <div className="content overflow-auto flex justify-center items-center z-10 relative">
@@ -42,7 +59,9 @@ const MainContent = () => {
           >
             <div className="flex-grow mb-4 text-white">
               <h1 className="text-[3.125rem] mb-4 leading-none font-bodonimoda">
-                {step === FormList.length ? "Thank you, Name" : "Book My Visit"}
+                {step === FormList.length
+                  ? `Thank you, ${formData.name.split(" ")[0]}`
+                  : "Book My Visit"}
               </h1>
               <h3 className="text-[1rem] mt-4 mb-12 tracking-wide20 align-top">
                 {subheadingGenerator()}
