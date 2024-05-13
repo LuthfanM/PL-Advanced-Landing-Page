@@ -60,7 +60,7 @@ const MainContent = () => {
             <div className="flex-grow mb-4 text-white">
               <h1 className="text-[3.125rem] mb-4 leading-none font-bodonimoda">
                 {step === FormList.length
-                  ? `Thank you, ${formData.name.split(" ")[0]}`
+                  ? `Thank you, ${formData?.name?.split(" ")[0]}`
                   : "Book My Visit"}
               </h1>
               <h3 className="text-[1rem] mt-4 mb-12 tracking-wide20 align-top">

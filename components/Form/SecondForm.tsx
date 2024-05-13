@@ -24,7 +24,7 @@ const SecondForm = () => {
           <Field
             type="text"
             name="surfingName"
-            placeholder="Name"
+            placeholder="DD/MM/YYYY"
             value={values.surfingName || ""}
             className="w-full p-4 black60 placeholder:text-gray-300"
           />

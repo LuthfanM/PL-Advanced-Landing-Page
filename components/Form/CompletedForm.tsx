@@ -1,11 +1,9 @@
 "use client";
+import { useFormData } from "@/providers/FormDataProvider";
 import React, { useEffect } from "react";
 
 const CompletedForm = () => {
-  const name = "Dogus Unsalan";
-  const email = "email@example.com";
-  const country = "Germany";
-  const visitDate = "23/04/2024";
+  const { formData } = useFormData();
 
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
@@ -25,19 +23,19 @@ const CompletedForm = () => {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>
           <p>
-            <strong>Name:</strong> {name}
+            <strong>Name:</strong> {formData?.name}
           </p>
           <p>
-            <strong>Email:</strong> {email}
+            <strong>Email:</strong> {formData?.email}
           </p>
         </div>
         <div>
           <p>
             <strong>Country:</strong>{" "}
-            <span className="text-red-500">{country}</span>
+            <span className="text-red-500">{formData?.country}</span>
           </p>
           <p>
-            <strong>Visit date:</strong> {visitDate}
+            <strong>Visit date:</strong> {formData?.surfingName}
           </p>
         </div>
       </div>
