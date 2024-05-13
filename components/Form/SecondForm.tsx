@@ -1,11 +1,16 @@
 import React from "react";
 import Slider from "../Slider/Slider";
+import CustomDropdown from "../Dropdown/CustomDropdown";
+import { boards } from "@/constants/items";
 
 const SecondForm = () => {
   return (
-    <div>
+    <div className="h-full">
       <div className="mb-6 w-full">
-        <label htmlFor="surfing-experience-slider" className="block mb-2 align-top">
+        <label
+          htmlFor="surfing-experience-slider"
+          className="block mb-2 align-top"
+        >
           Your Surfing Experience
         </label>
         <Slider />
@@ -13,14 +18,10 @@ const SecondForm = () => {
       <div className="grid grid-cols-2 gap-4 mb-4">
         <input
           type="text"
-          placeholder="Visit Date"
-          className="w-full px-4 py-[18px] border border-gray-300 rounded"
+          placeholder="Name"
+          className="w-full p-4 black60 placeholder:text-gray-300"
         />
-        <select className="w-full px-4 py-[18px] border border-gray-300 rounded">
-          <option>Country</option>
-          <option>USA</option>
-          <option>Canada</option>
-        </select>
+       <CustomDropdown title="Your Desired Board" data={boards} />
       </div>
     </div>
   );

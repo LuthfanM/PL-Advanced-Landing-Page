@@ -10,7 +10,7 @@ const Container = ({ id, children }: { id: string; children: any }) => {
         <React.Fragment>{children}</React.Fragment>
       </div>
       <div className="secondary-bg">
-        <div className="booking-visit font-bodonimoda relative tracking-wide text-[15rem]">
+        <div className="booking-visit font-bodonimoda relative tracking-[0.125em] text-[9.375rem]">
           Book Visit
         </div>       
       </div>

@@ -10,6 +10,7 @@ const config: Config = {
     "./icons/**/*.{js,ts,jsx,tsx}",
     "./contents/**/*.{js,ts,jsx,tsx}",
     "./styles/**/*.{js,ts,jsx,tsx}",
+    "./helpers/**/*.{js,ts,jsx,tsx}",
     "./types/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
