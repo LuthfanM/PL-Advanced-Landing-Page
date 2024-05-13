@@ -16,7 +16,7 @@ const CompletedForm = () => {
   return (
     <div className="bg-black text-white text-[0.875rem]">
       <p className="mb-6">
-        Your store visit is booked and you're ready to ride the shopping wave.
+        Your store visit is booked and you&apos;re ready to ride the shopping wave.
         Here’s your detail:
       </p>
 
