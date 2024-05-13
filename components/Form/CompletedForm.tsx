@@ -5,13 +5,13 @@ import React, { useEffect } from "react";
 const CompletedForm = () => {
   const { formData } = useFormData();
 
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       window.location.reload();
-//     }, 10000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.location.reload();
+    }, 10000);
 
-//     return () => clearTimeout(timer);
-//   }, []);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="bg-black text-white text-[0.875rem]">
